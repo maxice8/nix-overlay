@@ -1,0 +1,78 @@
+{
+  "nodes": {
+    "apkbuild-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1631356169,
+        "narHash": "sha256-9k1iokjWnD5VJhhbKjo64B52Bg+HZ0K96iVnmTpKDYA=",
+        "ref": "master",
+        "rev": "8dbd9745f76fb284656711238e8cd42d021da85e",
+        "revCount": 119,
+        "type": "git",
+        "url": "https://gitlab.alpinelinux.org/Leo/apkbuild.vim.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.alpinelinux.org/Leo/apkbuild.vim.git"
+      }
+    },
+    "kanagawa-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646217728,
+        "narHash": "sha256-TStFrx0u/MwSDcimvuwRRiyajkVq+rF5HWYCRsL4PCI=",
+        "owner": "rebelot",
+        "repo": "kanagawa.nvim",
+        "rev": "63cb5cc1a80def7da4bb375adee1587866250a17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rebelot",
+        "repo": "kanagawa.nvim",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1646159311,
+        "narHash": "sha256-ILKckkiG074t3a0pwaPLjio8zVWgowpEp7AUwI5HjHE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "18bd82edcc752d6a0e6cce1401ba0c81353a03ca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "apkbuild-vim": "apkbuild-vim",
+        "kanagawa-nvim": "kanagawa-nvim",
+        "nixpkgs": "nixpkgs",
+        "vim-scdoc": "vim-scdoc"
+      }
+    },
+    "vim-scdoc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628096593,
+        "narHash": "sha256-D3ka3NBts/x+IH/C6qNSBaO4zBmM0aJHL0yMDJKMyDM=",
+        "owner": "gpanders",
+        "repo": "vim-scdoc",
+        "rev": "a275d125c7905a803a9a90cfc5501fcebeb210c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gpanders",
+        "repo": "vim-scdoc",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
