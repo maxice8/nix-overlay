@@ -107,6 +107,7 @@
         self.packages.${system}.ydotool;
       abuild = prev.abuild.overrideAttrs(old: rec {
         version = "3.9.0";
+        nativeBuildInputs = prev.abuild.nativeBuildInputs ++ [ final.scdoc ];
         src = final.fetchFromGitLab rec {
           domain = "gitlab.alpinelinux.org";
           owner = "alpine";
