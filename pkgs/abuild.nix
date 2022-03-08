@@ -1,6 +1,9 @@
 self: super:
+let
+  orig-abuild = super.callPackage <nixpkgs/pkgs/development/tools/abuild> { };
+in
 {
-  abuild = super.abuild.overrideAttrs ( old: rec {
+  abuild = orig-abuild.overrideAttrs ( old: rec {
     version = "3.9.0";
     src = super.fetchFromGitLab rec {
       domain = "gitlab.alpinelinux.org";
