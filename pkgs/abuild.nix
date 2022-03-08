@@ -1,6 +1,6 @@
 self: super:
 {
-  abuild = super.houdini.overrideAttrs ( old: rec {
+  abuild = super.abuild.overrideAttrs ( old: rec {
     version = "3.9.0";
     src = super.fetchFromGitLab rec {
       domain = "gitlab.alpinelinux.org";
