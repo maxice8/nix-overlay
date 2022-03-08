@@ -27,100 +27,101 @@
     };
   };
 
-  outputs = { 
-    self,
-    nixpkgs,
-    flake-utils,
-    ...
-  }@inputs:
-  let
-    # Define system as defined by flake-utils
-    system = flake-utils.lib.system;
-    # List all linux systems using the ${system} definition
-    # as that allows us to type-safely instead of relying on
-    # not typoing a string
-    linuxSystems =
-      [
-        system.x86_64-linux
-        system.i686-linux
-        system.aarch64-linux
-      ];
-  in
-  # Loop over all the linux systems
-  flake-utils.lib.eachSystem linuxSystems (system:
+  outputs =
+    { self
+    , nixpkgs
+    , flake-utils
+    , ...
+    }@inputs:
     let
-      pkgs = nixpkgs.legacyPackages.${system};
+      # Define system as defined by flake-utils
+      inherit (flake-utils.lib) system;
+      # List all linux systems using the ${system} definition
+      # as that allows us to type-safely instead of relying on
+      # not typoing a string
+      linuxSystems =
+        [
+          system.x86_64-linux
+          system.i686-linux
+          system.aarch64-linux
+        ];
     in
-    {
-      # Define packages.${system} to include ydotool
-      # this will guarantee that only Linux systems have
-      # ydotool which is quite literally made using the
-      # Linux uinput device
-      packages = {
-          ydotool = pkgs.callPackage ./pkgs/ydotool.nix {}; 
-      };
-    }
-  ) //
-
-  # Define an overlay for each of the default systems
-  flake-utils.lib.eachDefaultSystem (system:
-  {
-    overlays =
-      final:
-      prev:
-    let
-      # Define a helper function calld 'buildMaxPlugin',
-      # that uses the 'buildVimPluginFrom2Nix' that is
-      # available on 'vimUtils'
-      #
-      # This function takes a 'name', that 'name' must
-      # be in the 'inputs' of the flake.nix
-      inherit (prev.vimUtils) buildVimPluginFrom2Nix;
-      buildMaxPlugin = name: buildVimPluginFrom2Nix {
-        pname = name;
-        version = "master";
-        src = builtins.getAttr name inputs;
-      };
-
-      # Create a list of plugins by reading all inputs
-      # and ignoring certain input names like 'self'
-      # and 'nixpkgs' since those are not meant to be
-      # vim plugins
-      #
-      # NOTE: in the future, if this overlay grows to
-      # include inputs related to other packages then
-      # we might want to change this so that it excludes
-      # everything by default and includes just 'names'
-      # that start with 'vimPlugin-' or another specific,
-      # defined, prefix.
-      plugins = builtins.filter
-        (name:
-          name != "self" &&
-          name != "nixpkgs" &&
-          name != "flake-utils")
-        (builtins.attrNames inputs);
-    in
-    {
-      # Add the ydotool package if our system is inside
-      # the list of systems that are linux
-      ydotool = final.lib.mkIf (builtins.elem system linuxSystems)
-        self.packages.${system}.ydotool;
-      abuild = prev.abuild.overrideAttrs(old: rec {
-        version = "3.9.0";
-        nativeBuildInputs = prev.abuild.nativeBuildInputs ++ [ final.scdoc ];
-        src = final.fetchFromGitLab rec {
-          domain = "gitlab.alpinelinux.org";
-          owner = "alpine";
-          repo = "abuild";
-          rev = version;
-          sha256 = "1zs8slaqiv8q8bim8mwfy08ymar78rqpkgqksw8y1lsjrj49fqy4";
+    # Loop over all the linux systems
+    flake-utils.lib.eachSystem linuxSystems
+      (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        # Define packages.${system} to include ydotool
+        # this will guarantee that only Linux systems have
+        # ydotool which is quite literally made using the
+        # Linux uinput device
+        packages = {
+          ydotool = pkgs.callPackage ./pkgs/ydotool.nix { };
         };
-      });
+      }
+      ) //
 
-      # UPDATE vimPlugins with the list of plugins
-      vimPlugins = prev.vimPlugins //
-        builtins.listToAttrs
-          (map (name: { inherit name; value = buildMaxPlugin name; }) plugins);
-    };
-  });
+    # Define an overlay for each of the default systems
+    flake-utils.lib.eachDefaultSystem (system:
+    {
+      overlays =
+        final:
+        prev:
+        let
+          # Define a helper function calld 'buildMaxPlugin',
+          # that uses the 'buildVimPluginFrom2Nix' that is
+          # available on 'vimUtils'
+          #
+          # This function takes a 'name', that 'name' must
+          # be in the 'inputs' of the flake.nix
+          inherit (prev.vimUtils) buildVimPluginFrom2Nix;
+          buildMaxPlugin = name: buildVimPluginFrom2Nix {
+            pname = name;
+            version = "master";
+            src = builtins.getAttr name inputs;
+          };
+
+          # Create a list of plugins by reading all inputs
+          # and ignoring certain input names like 'self'
+          # and 'nixpkgs' since those are not meant to be
+          # vim plugins
+          #
+          # NOTE: in the future, if this overlay grows to
+          # include inputs related to other packages then
+          # we might want to change this so that it excludes
+          # everything by default and includes just 'names'
+          # that start with 'vimPlugin-' or another specific,
+          # defined, prefix.
+          plugins = builtins.filter
+            (name:
+              name != "self" &&
+              name != "nixpkgs" &&
+              name != "flake-utils")
+            (builtins.attrNames inputs);
+        in
+        {
+          # Add the ydotool package if our system is inside
+          # the list of systems that are linux
+          ydotool = final.lib.mkIf (builtins.elem system linuxSystems)
+            self.packages.${system}.ydotool;
+          abuild = prev.abuild.overrideAttrs (old: rec {
+            version = "3.9.0";
+            nativeBuildInputs = prev.abuild.nativeBuildInputs ++ [ final.scdoc ];
+            src = final.fetchFromGitLab rec {
+              domain = "gitlab.alpinelinux.org";
+              owner = "alpine";
+              repo = "abuild";
+              rev = version;
+              sha256 = "1zs8slaqiv8q8bim8mwfy08ymar78rqpkgqksw8y1lsjrj49fqy4";
+            };
+          });
+
+          # UPDATE vimPlugins with the list of plugins
+          vimPlugins = prev.vimPlugins //
+          builtins.listToAttrs
+            (map (name: { inherit name; value = buildMaxPlugin name; }) plugins);
+        };
+    });
 }
