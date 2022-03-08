@@ -105,7 +105,16 @@
       # the list of systems that are linux
       ydotool = final.lib.mkIf (builtins.elem system linuxSystems)
         self.packages.${system}.ydotool;
-      abuild = import ./pkgs/abuild.nix {};
+      abuild = prev.abuild.overrideAttrs(old: rec {
+        version = "3.9.0";
+        src = final.fetchFromGitLab rec {
+          domain = "gitlab.alpinelinux.org";
+          owner = "alpine";
+          repo = "abuild";
+          rev = version;
+          sha256 = "1zs8slaqiv8q8bim8mwfy08ymar78rqpkgqksw8y1lsjrj49fqy4";
+        };
+      });
 
       # UPDATE vimPlugins with the list of plugins
       vimPlugins = prev.vimPlugins //
