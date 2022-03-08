@@ -105,7 +105,7 @@
       # the list of systems that are linux
       ydotool = final.lib.mkIf (builtins.elem system linuxSystems)
         self.packages.${system}.ydotool;
-      abuild = import ./pkgs/abuild.nix;
+      abuild = import ./pkgs/abuild.nix {};
 
       # UPDATE vimPlugins with the list of plugins
       vimPlugins = prev.vimPlugins //
