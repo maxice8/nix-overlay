@@ -35,22 +35,26 @@
     }@inputs:
     let
       # Define system as defined by flake-utils
-      inherit (flake-utils.lib) system;
+      sys = flake-utils.lib.system;
       # List all linux systems using the ${system} definition
       # as that allows us to type-safely instead of relying on
       # not typoing a string
       linuxSystems =
         [
-          system.x86_64-linux
-          system.i686-linux
-          system.aarch64-linux
+          sys.x86_64-linux
+          sys.i686-linux
+          sys.aarch64-linux
         ];
     in
     # Loop over all the linux systems
     flake-utils.lib.eachSystem linuxSystems
       (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs
+          {
+            inherit system;
+            config = { allowUnfree = true; };
+          };
       in
       {
         # Define packages.${system} to include ydotool
@@ -59,7 +63,10 @@
         # Linux uinput device
         packages = {
           ydotool = pkgs.callPackage ./pkgs/ydotool.nix { };
-        };
+        } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
+          {
+            lc0 = pkgs.callPackage ./pkgs/lc0.nix { };
+          };
       }
       ) //
 
@@ -106,6 +113,8 @@
           # the list of systems that are linux
           ydotool = final.lib.mkIf (builtins.elem system linuxSystems)
             self.packages.${system}.ydotool;
+          lc0 = final.lib.mkIf (builtins.elem system [ sys.x86_64-linux ])
+            self.packages.${system}.lc0;
           abuild = prev.abuild.overrideAttrs (old: rec {
             version = "3.9.0";
             nativeBuildInputs = prev.abuild.nativeBuildInputs ++ [ final.scdoc ];
