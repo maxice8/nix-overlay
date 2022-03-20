@@ -21,8 +21,10 @@
       flake = false;
     };
     apkbuild-vim = {
-      type = "git";
-      url = "https://gitlab.alpinelinux.org/Leo/apkbuild.vim.git";
+      type = "gitlab";
+      host = "gitlab.alpinelinux.org";
+      owner = "Leo";
+      repo = "apkbuild.vim";
       flake = false;
     };
   };

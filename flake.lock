@@ -3,17 +3,19 @@
     "apkbuild-vim": {
       "flake": false,
       "locked": {
+        "host": "gitlab.alpinelinux.org",
         "lastModified": 1631356169,
         "narHash": "sha256-9k1iokjWnD5VJhhbKjo64B52Bg+HZ0K96iVnmTpKDYA=",
-        "ref": "master",
+        "owner": "Leo",
+        "repo": "apkbuild.vim",
         "rev": "8dbd9745f76fb284656711238e8cd42d021da85e",
-        "revCount": 119,
-        "type": "git",
-        "url": "https://gitlab.alpinelinux.org/Leo/apkbuild.vim.git"
+        "type": "gitlab"
       },
       "original": {
-        "type": "git",
-        "url": "https://gitlab.alpinelinux.org/Leo/apkbuild.vim.git"
+        "host": "gitlab.alpinelinux.org",
+        "owner": "Leo",
+        "repo": "apkbuild.vim",
+        "type": "gitlab"
       }
     },
     "flake-utils": {
@@ -34,11 +36,11 @@
     "kanagawa-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1646217728,
-        "narHash": "sha256-TStFrx0u/MwSDcimvuwRRiyajkVq+rF5HWYCRsL4PCI=",
+        "lastModified": 1647694885,
+        "narHash": "sha256-TAJwdsbPBwpCMaUHnSixReOtJlS/fc5GbfVVTtxkmBM=",
         "owner": "rebelot",
         "repo": "kanagawa.nvim",
-        "rev": "63cb5cc1a80def7da4bb375adee1587866250a17",
+        "rev": "718ea31b8b6a92b99f25c817ac150b44b45f857f",
         "type": "github"
       },
       "original": {
