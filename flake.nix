@@ -9,6 +9,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
+    # Source for packages, we pass them as the inputs variable
+    ydotool-src = {
+      url = "github:ReimuNotMoe/ydotool";
+      flake = false;
+    };
+
     # plugins, each input here is automatically packaged
     # as a plugin and made available in vimPlugins (if you
     # add us to your overlay ;) )
@@ -64,7 +70,7 @@
         # ydotool which is quite literally made using the
         # Linux uinput device
         packages = {
-          ydotool = pkgs.callPackage ./pkgs/ydotool.nix { };
+          ydotool = pkgs.callPackage ./pkgs/ydotool.nix { inherit inputs; };
         } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
           {
             lc0 = pkgs.callPackage ./pkgs/lc0.nix { };
@@ -105,6 +111,7 @@
           # defined, prefix.
           plugins = builtins.filter
             (name:
+              name != "ydotool" &&
               name != "self" &&
               name != "nixpkgs" &&
               name != "flake-utils")
