@@ -9,7 +9,7 @@
 
 stdenv.mkDerivation rec {
   pname = "ydotool";
-  version = "1.0.1";
+  version = "master";
 
   src = inputs.ydotool-src;
 
