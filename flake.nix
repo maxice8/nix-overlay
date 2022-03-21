@@ -103,18 +103,14 @@
           # and 'nixpkgs' since those are not meant to be
           # vim plugins
           #
-          # NOTE: in the future, if this overlay grows to
-          # include inputs related to other packages then
-          # we might want to change this so that it excludes
-          # everything by default and includes just 'names'
-          # that start with 'vimPlugin-' or another specific,
-          # defined, prefix.
+          # we also ignore ones that end with `-src` since
+          # those are sources that are passed to builds
           plugins = builtins.filter
             (name:
-              name != "ydotool" &&
               name != "self" &&
               name != "nixpkgs" &&
-              name != "flake-utils")
+              name != "flake-utils" &&
+              !builtins.hasSufix "-src" name)
             (builtins.attrNames inputs);
         in
         {
