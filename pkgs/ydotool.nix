@@ -1,4 +1,5 @@
-{ stdenv
+{ inputs
+, stdenv
 , lib
 , fetchFromGitHub
 , cmake
@@ -10,12 +11,7 @@ stdenv.mkDerivation rec {
   pname = "ydotool";
   version = "1.0.1";
 
-  src = fetchFromGitHub {
-    owner = "ReimuNotMoe";
-    repo = "ydotool";
-    rev = "v${version}";
-    hash = "sha256-maXXGCqB8dkGO8956hsKSwM4HQdYn6z1jBFENQ9sKcA=";
-  };
+  src = inputs.ydotool-src;
 
   nativeBuildInputs = [
     cmake
