@@ -110,7 +110,7 @@
               name != "self" &&
               name != "nixpkgs" &&
               name != "flake-utils" &&
-              !builtins.hasSufix "-src" name)
+              !final.lib.hasSuffix "-src" name)
             (builtins.attrNames inputs);
         in
         {
