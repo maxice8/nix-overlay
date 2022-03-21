@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "abuild-src": {
+      "flake": false,
+      "locked": {
+        "host": "gitlab.alpinelinux.org",
+        "lastModified": 1642432645,
+        "narHash": "sha256-5ATw/fePt0nvr3iiWLwRFR+K4E2dUVfwCWmPeUoDAPQ=",
+        "owner": "alpine",
+        "repo": "abuild",
+        "rev": "681ef9dfcf6e57bdda767efed7e50ce8e9de0563",
+        "type": "gitlab"
+      },
+      "original": {
+        "host": "gitlab.alpinelinux.org",
+        "owner": "alpine",
+        "repo": "abuild",
+        "type": "gitlab"
+      }
+    },
     "apkbuild-vim": {
       "flake": false,
       "locked": {
@@ -67,6 +85,7 @@
     },
     "root": {
       "inputs": {
+        "abuild-src": "abuild-src",
         "apkbuild-vim": "apkbuild-vim",
         "flake-utils": "flake-utils",
         "kanagawa-nvim": "kanagawa-nvim",

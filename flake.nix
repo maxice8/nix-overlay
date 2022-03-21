@@ -14,6 +14,13 @@
       url = "github:ReimuNotMoe/ydotool";
       flake = false;
     };
+    abuild-src = {
+      type = "gitlab";
+      host = "gitlab.alpinelinux.org";
+      owner = "alpine";
+      repo = "abuild";
+      flake = false;
+    };
 
     # plugins, each input here is automatically packaged
     # as a plugin and made available in vimPlugins (if you
@@ -71,6 +78,7 @@
         # Linux uinput device
         packages = {
           ydotool = pkgs.callPackage ./pkgs/ydotool.nix { inherit inputs; };
+          abuild = pkgs.callPackage ./pkgs/abuild.nix { inherit inputs; };
         } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
           {
             lc0 = pkgs.callPackage ./pkgs/lc0.nix { };
@@ -120,17 +128,8 @@
             self.packages.${system}.ydotool;
           lc0 = final.lib.mkIf (builtins.elem system [ sys.x86_64-linux ])
             self.packages.${system}.lc0;
-          abuild = prev.abuild.overrideAttrs (old: rec {
-            version = "3.9.0";
-            nativeBuildInputs = prev.abuild.nativeBuildInputs ++ [ final.scdoc ];
-            src = final.fetchFromGitLab rec {
-              domain = "gitlab.alpinelinux.org";
-              owner = "alpine";
-              repo = "abuild";
-              rev = version;
-              sha256 = "1zs8slaqiv8q8bim8mwfy08ymar78rqpkgqksw8y1lsjrj49fqy4";
-            };
-          });
+          abuild = final.lib.mkIf (builtins.elem system linuxSystems)
+            self.packages.${system}.abuil;
 
           # UPDATE vimPlugins with the list of plugins
           vimPlugins = prev.vimPlugins //
