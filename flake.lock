@@ -77,12 +77,12 @@
         "revCount": 1357,
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/LeelaChessZero/lc0"
+        "url": "https://github.com/LeelaChessZero/lc0.git"
       },
       "original": {
         "submodules": true,
         "type": "git",
-        "url": "https://github.com/LeelaChessZero/lc0"
+        "url": "https://github.com/LeelaChessZero/lc0.git"
       }
     },
     "nixpkgs": {
