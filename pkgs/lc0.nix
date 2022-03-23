@@ -1,4 +1,5 @@
-{ lib
+{ inputs
+, lib
 , stdenv
 , fetchFromGitHub
 , fetchpatch
@@ -16,13 +17,7 @@ stdenv.mkDerivation rec {
   pname = "lc0";
   version = "master";
 
-  src = fetchFromGitHub {
-    owner = "LeelaChessZero";
-    repo = "lc0";
-    rev = "025105e2f96978f1a4b69df9d20ab20d223a3a41";
-    sha256 = "16dmdkc14xx4c6q99dfp2qjr4msv18dn2djkj43krklvsk1jnbbr";
-    fetchSubmodules = true;
-  };
+  src = inputs.lc0-src;
 
   buildInputs = [
     mkl

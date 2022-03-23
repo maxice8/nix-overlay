@@ -21,6 +21,12 @@
       repo = "abuild";
       flake = false;
     };
+    lc0-src = {
+      url = "https://github.com/LeelaChessZero/lc0";
+      flake = false;
+      type = "git";
+      submodules = true;
+    };
 
     # plugins, each input here is automatically packaged
     # as a plugin and made available in vimPlugins (if you
@@ -81,7 +87,7 @@
           abuild = pkgs.callPackage ./pkgs/abuild.nix { inherit inputs; };
         } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
           {
-            lc0 = pkgs.callPackage ./pkgs/lc0.nix { };
+            lc0 = pkgs.callPackage ./pkgs/lc0.nix { inherit inputs; };
           };
       }
       ) //
