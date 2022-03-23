@@ -83,11 +83,11 @@
         # ydotool which is quite literally made using the
         # Linux uinput device
         packages = {
-          ydotool = pkgs.callPackage ./pkgs/ydotool.nix { inherit inputs; };
-          abuild = pkgs.callPackage ./pkgs/abuild.nix { inherit inputs; };
+          ydotool = pkgs.callPackage ./pkgs/ydotool { inherit inputs; };
+          abuild = pkgs.callPackage ./pkgs/abuild { inherit inputs; };
         } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
           {
-            lc0 = pkgs.callPackage ./pkgs/lc0.nix { inherit inputs; };
+            lc0 = pkgs.callPackage ./pkgs/lc0 { inherit inputs; };
           };
       }
       ) //
