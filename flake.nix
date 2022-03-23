@@ -22,7 +22,7 @@
       flake = false;
     };
     lc0-src = {
-      url = "https://github.com/LeelaChessZero/lc0";
+      url = "https://github.com/LeelaChessZero/lc0.git";
       flake = false;
       type = "git";
       submodules = true;
