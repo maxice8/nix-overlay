@@ -67,6 +67,24 @@
         "type": "github"
       }
     },
+    "lc0-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1647810599,
+        "narHash": "sha256-qiwyCx5p1ZhEE61urw42W7OH/CdndyieTuOWHN5Si0A=",
+        "ref": "master",
+        "rev": "70b36c7a22e558124bae35b2f60e79039a91e1bf",
+        "revCount": 1357,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/LeelaChessZero/lc0"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/LeelaChessZero/lc0"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1647800324,
@@ -89,6 +107,7 @@
         "apkbuild-vim": "apkbuild-vim",
         "flake-utils": "flake-utils",
         "kanagawa-nvim": "kanagawa-nvim",
+        "lc0-src": "lc0-src",
         "nixpkgs": "nixpkgs",
         "vim-scdoc": "vim-scdoc",
         "ydotool-src": "ydotool-src"
