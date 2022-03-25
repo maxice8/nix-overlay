@@ -1,4 +1,4 @@
-{ packages, system, inputs, ... }:
+inputs:
 final:
 prev:
 let
@@ -31,12 +31,6 @@ let
     (builtins.attrNames inputs);
 in
 {
-  # Add the ydotool package if our system is inside
-  # the list of systems that are linux
-  lc0 = final.lib.mkIf (builtins.elem system [ inputs.flake-utils.lib.system.x86_64-linux ])
-    packages.lc0;
-  inherit (packages) abuild ydotool;
-
   # UPDATE vimPlugins with the list of plugins
   vimPlugins = prev.vimPlugins //
     builtins.listToAttrs
