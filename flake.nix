@@ -60,9 +60,11 @@
       (currentSystem:
       {
         packages = import ./packages currentSystem inputs;
-        overlays = import ./overlays {
-          system = currentSystem;
-          packages = self.packages.${currentSystem};
-        };
+        overlays = import ./overlays
+          {
+            system = currentSystem;
+            packages = self.packages.${currentSystem};
+          }
+          inputs;
       });
 }
