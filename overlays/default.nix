@@ -1,4 +1,8 @@
 inputs:
+flakePackages:
+let
+  inherit inputs flakePackages;
+in
 final:
 prev:
 let
@@ -31,6 +35,8 @@ let
     (builtins.attrNames inputs);
 in
 {
+  inherit flakePackages;
+
   # UPDATE vimPlugins with the list of plugins
   vimPlugins = prev.vimPlugins //
     builtins.listToAttrs
