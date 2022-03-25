@@ -52,18 +52,21 @@
     { self
     , ...
     }@inputs:
-    let
-      inherit (inputs.flake-utils.lib) eachSystem system;
-    in
-    # Loop over all the linux systems
-    eachSystem [ system.x86_64-linux system.i686-linux system.aarch64-linux ]
-      (currentSystem:
+      with inputs;
+      let
+        inherit (flake-utils.lib) eachSystem system flattenTree;
+      in
+      eachSystem [ system.aarch64-linux system.i686-linux system.x86_64-linux ]
+        (currentSystem:
+        let pkgs = nixpkgs.legacyPackages.${currentSystem}.extend self.overlays.default;
+        in
+        {
+          packages = flattenTree {
+            inherit (pkgs) abuild;
+          };
+        }
+        ) //
       {
-        packages = import ./packages currentSystem inputs;
-        # ./overlays generates all the vim plugins we use, we also
-        # add all our packages
-        overlays = final: prev:
-          import ./overlays final prev inputs
-          // self.packages.${currentSystem};
-      });
+        overlays.default = import ./overlays inputs;
+      };
 }
