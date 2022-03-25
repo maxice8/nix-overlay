@@ -1,4 +1,4 @@
-{ packages, system, ... } @inputs:
+{ packages, system, inputs, ... }:
 final:
 prev:
 let

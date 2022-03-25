@@ -64,7 +64,7 @@
           {
             system = currentSystem;
             packages = self.packages.${currentSystem};
-          }
-          inputs;
+            inherit inputs;
+          };
       });
 }
