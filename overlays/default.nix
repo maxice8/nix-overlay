@@ -1,11 +1,9 @@
-inputs:
-flakePackages:
-let
-  inherit inputs flakePackages;
-in
 final:
 prev:
+inputs:
 let
+  inherit inputs;
+
   # Define a helper function calld 'buildMaxPlugin',
   # that uses the 'buildVimPluginFrom2Nix' that is
   # available on 'vimUtils'
@@ -35,8 +33,6 @@ let
     (builtins.attrNames inputs);
 in
 {
-  inherit flakePackages;
-
   # UPDATE vimPlugins with the list of plugins
   vimPlugins = prev.vimPlugins //
     builtins.listToAttrs

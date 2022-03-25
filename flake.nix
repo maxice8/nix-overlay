@@ -62,6 +62,8 @@
         packages = import ./packages currentSystem inputs;
         # ./overlays generates all the vim plugins we use, we also
         # add all our packages
-        overlays = import ./overlays inputs self.packages.${currentSystem};
+        overlays = final: prev:
+          import ./overlays final prev inputs
+          // self.packages.${currentSystem};
       });
 }
