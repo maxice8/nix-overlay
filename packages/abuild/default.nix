@@ -1,4 +1,4 @@
-{ inputs
+{ src
 , lib
 , stdenv
 , fetchFromGitLab
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   pname = "abuild";
   version = "master";
 
-  src = inputs.abuild-src;
+  inherit src;
 
   buildInputs = [
     openssl

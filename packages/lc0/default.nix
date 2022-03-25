@@ -1,4 +1,4 @@
-{ inputs
+{ src
 , lib
 , stdenv
 , fetchFromGitHub
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
   pname = "lc0";
   version = "master";
 
-  src = inputs.lc0-src;
+  inherit src;
 
   buildInputs = [
     mkl

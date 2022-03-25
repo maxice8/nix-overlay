@@ -1,4 +1,4 @@
-{ inputs
+{ src
 , stdenv
 , lib
 , fetchFromGitHub
@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
   pname = "ydotool";
   version = "master";
 
-  src = inputs.ydotool-src;
+  inherit src;
 
   nativeBuildInputs = [
     cmake
