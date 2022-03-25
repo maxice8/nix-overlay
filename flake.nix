@@ -70,27 +70,9 @@
     # Loop over all the linux systems
     flake-utils.lib.eachSystem linuxSystems
       (system:
-      let
-        pkgs = import nixpkgs
-          {
-            inherit system;
-            config = { allowUnfree = true; };
-          };
-      in
       {
-        # Define packages.${system} to include ydotool
-        # this will guarantee that only Linux systems have
-        # ydotool which is quite literally made using the
-        # Linux uinput device
-        packages = {
-          ydotool = pkgs.callPackage ./pkgs/ydotool { inherit inputs; };
-          abuild = pkgs.callPackage ./pkgs/abuild { inherit inputs; };
-        } // pkgs.lib.optionalAttrs (system == sys.x86_64-linux)
-          {
-            lc0 = pkgs.callPackage ./pkgs/lc0 { inherit inputs; };
-          };
-      }
-      ) //
+        packages = import ./packages system inputs;
+      }) //
 
     # Define an overlay for each of the default systems
     flake-utils.lib.eachDefaultSystem (system:
