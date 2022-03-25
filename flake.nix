@@ -60,11 +60,8 @@
       (currentSystem:
       {
         packages = import ./packages currentSystem inputs;
-        overlays = import ./overlays
-          {
-            system = currentSystem;
-            packages = self.packages.${currentSystem};
-            inherit inputs;
-          };
+        # ./overlays generates all the vim plugins we use, we also
+        # add all our packages
+        overlays = self.packages.${currentSystem} // import ./overlays inputs;
       });
 }
