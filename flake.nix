@@ -58,14 +58,20 @@
       in
       eachSystem [ system.aarch64-linux system.i686-linux system.x86_64-linux ]
         (currentSystem:
-        let pkgs = nixpkgs.legacyPackages.${currentSystem}.extend self.overlays.default;
+        let
+          pkgs = import nixpkgs {
+            system = currentSystem;
+            config = { allowUnfree = true; };
+          };
         in
         {
-          packages = flattenTree {
-            inherit (pkgs) abuild;
+          packages = {
+            ydotool = pkgs.callPackage ./packages/ydotool { src = inputs.ydotool-src; };
+            abuild = pkgs.callPackage ./packages/abuild { src = inputs.abuild-src; };
+          } // pkgs.lib.optionalAttrs (currentSystem == system.x86_64-linux) {
+            lc0 = pkgs.callPackage ./packages/lc0 { src = inputs.lc0-src; };
           };
-        }
-        ) //
+        }) //
       {
         overlays.default = import ./overlays inputs;
       };

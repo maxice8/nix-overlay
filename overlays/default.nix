@@ -38,7 +38,4 @@ in
     builtins.listToAttrs
       (map (name: { inherit name; value = buildMaxPlugin name; }) plugins);
 
-  ydotool = final.callPackage ./ydotool { src = inputs.ydotool-src; };
-  abuild = final.callPackage ./abuild { src = inputs.abuild-src; };
-  lc0 = final.callPackage ./lc0 { src = inputs.lc0-src; };
 }
