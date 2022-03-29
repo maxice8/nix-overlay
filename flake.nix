@@ -54,13 +54,14 @@
     }@inputs:
       with inputs;
       let
-        inherit (flake-utils.lib) eachSystem system flattenTree;
+        inherit (flake-utils.lib) eachSystem flattenTree;
+        inherit (flake-utils.lib.system) aarch64-linux i686-linux x86_64-linux;
       in
-      eachSystem [ system.aarch64-linux system.i686-linux system.x86_64-linux ]
-        (currentSystem:
+      eachSystem [ aarch64-linux i686-linux x86_64-linux ]
+        (system:
         let
           pkgs = import nixpkgs {
-            system = currentSystem;
+            inherit system;
             config = { allowUnfree = true; };
           };
         in
@@ -68,7 +69,7 @@
           packages = {
             ydotool = pkgs.callPackage ./packages/ydotool { src = inputs.ydotool-src; };
             abuild = pkgs.callPackage ./packages/abuild { src = inputs.abuild-src; };
-          } // pkgs.lib.optionalAttrs (currentSystem == system.x86_64-linux) {
+          } // pkgs.lib.optionalAttrs (system == x86_64-linux) {
             lc0 = pkgs.callPackage ./packages/lc0 { src = inputs.lc0-src; };
           };
         }) //
