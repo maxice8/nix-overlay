@@ -1,7 +1,6 @@
 { src
 , stdenv
 , lib
-, fetchFromGitHub
 , cmake
 , scdoc
 , util-linux

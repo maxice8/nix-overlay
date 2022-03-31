@@ -1,7 +1,6 @@
 { src
 , lib
 , stdenv
-, fetchFromGitLab
 , makeWrapper
 , pkg-config
 , file

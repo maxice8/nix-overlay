@@ -1,7 +1,6 @@
 { src
 , lib
 , stdenv
-, fetchFromGitHub
 , fetchpatch
 , meson
 , ninja
