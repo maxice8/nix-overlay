@@ -70,11 +70,11 @@
     "lc0-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1648561869,
-        "narHash": "sha256-IauWikyoqxuqpG1oxyXfrbLwTdkeeUpx5kPFZGCEpEY=",
+        "lastModified": 1648771768,
+        "narHash": "sha256-66/fSSszb+iFnRHZFiAMcaXAR6wQ4srsQGFe625jMxw=",
         "ref": "master",
-        "rev": "da0895bfcb89e588a844d3bba6727f1554b5fb15",
-        "revCount": 1358,
+        "rev": "bcd6762edf2e76c063f87d8b01a0383c6983dab3",
+        "revCount": 1361,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/LeelaChessZero/lc0.git"
