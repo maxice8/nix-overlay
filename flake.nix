@@ -69,6 +69,7 @@
           packages = {
             ydotool = pkgs.callPackage ./packages/ydotool { src = inputs.ydotool-src; };
             abuild = pkgs.callPackage ./packages/abuild { src = inputs.abuild-src; };
+            delta = pkgs.callPackage ./packages/delta { };
           } // pkgs.lib.optionalAttrs (system == x86_64-linux) {
             lc0 = pkgs.callPackage ./packages/lc0 { src = inputs.lc0-src; };
           };
