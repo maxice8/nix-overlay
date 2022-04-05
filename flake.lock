@@ -4,11 +4,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.alpinelinux.org",
-        "lastModified": 1642432645,
-        "narHash": "sha256-5ATw/fePt0nvr3iiWLwRFR+K4E2dUVfwCWmPeUoDAPQ=",
+        "lastModified": 1649145768,
+        "narHash": "sha256-jssalBSLQanBa9pMCI1XyUnf+q5euZC8VbFUbQWkxEw=",
         "owner": "alpine",
         "repo": "abuild",
-        "rev": "681ef9dfcf6e57bdda767efed7e50ce8e9de0563",
+        "rev": "d9f03b387a02541f9d60384b6447a141765d342f",
         "type": "gitlab"
       },
       "original": {
