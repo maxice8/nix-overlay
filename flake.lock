@@ -54,11 +54,11 @@
     "kanagawa-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1654867287,
-        "narHash": "sha256-bLkSJcN1L2hKAE/3ZeHyXMHGm0BN3DcoCKMLyFNMsQg=",
+        "lastModified": 1654946852,
+        "narHash": "sha256-WjSUc6g/IC5sGFupIs55rGMz3U99IjfrlaHUR4iz2TI=",
         "owner": "rebelot",
         "repo": "kanagawa.nvim",
-        "rev": "6a30cab7b7c0184f06565e102420fc2b8ddaebdc",
+        "rev": "76df2251e813fdec244b2b593be62accea930119",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
     "lc0-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1654583920,
-        "narHash": "sha256-mnrH5aMWCAmmsg2SmcKNs4HuiPMSyCPOMWAqnmV09ic=",
+        "lastModified": 1654924627,
+        "narHash": "sha256-gc6W0rD8EgLFgba+AQ+/Rb35eA5BFZTANY8+vbZuRUY=",
         "ref": "refs/heads/master",
-        "rev": "9448145aaf636c2987737095811007947ea7826e",
-        "revCount": 1380,
+        "rev": "8ab2fae0fd93ed43f6376fa68ce21ec9c3808682",
+        "revCount": 1381,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/LeelaChessZero/lc0.git"
