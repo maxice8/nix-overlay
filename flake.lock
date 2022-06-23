@@ -4,11 +4,11 @@
       "flake": false,
       "locked": {
         "host": "gitlab.alpinelinux.org",
-        "lastModified": 1655214320,
-        "narHash": "sha256-DEdRGzxYvWD2LgVnAggkZWLy7+JlwC+5uEZRWV+4uWs=",
+        "lastModified": 1655908911,
+        "narHash": "sha256-9uNkceHFs2pVkq1oYjqoq8LyMlqGEPEoeFwr/lrecRI=",
         "owner": "alpine",
         "repo": "abuild",
-        "rev": "8219a3219ff82effbb6154cc9953af45b981d6ba",
+        "rev": "4dbf8e3756188748d3fff9dce81f93b21085d123",
         "type": "gitlab"
       },
       "original": {
@@ -87,11 +87,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1655624069,
-        "narHash": "sha256-7g1zwTdp35GMTERnSzZMWJ7PG3QdDE8VOX3WsnOkAtM=",
+        "lastModified": 1655895887,
+        "narHash": "sha256-AbihSVmPKFcQmaVgzNSLQ8sLAaVTTELPSzZ+/gRVfyk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0d68d7c857fe301d49cdcd56130e0beea4ecd5aa",
+        "rev": "e1e08fe28bf0588a41cd556eac40b98d2793da99",
         "type": "github"
       },
       "original": {
