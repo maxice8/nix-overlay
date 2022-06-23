@@ -14,13 +14,6 @@
       url = "github:ReimuNotMoe/ydotool";
       flake = false;
     };
-    abuild-src = {
-      type = "gitlab";
-      host = "gitlab.alpinelinux.org";
-      owner = "alpine";
-      repo = "abuild";
-      flake = false;
-    };
     lc0-src = {
       url = "https://github.com/LeelaChessZero/lc0.git";
       flake = false;
@@ -68,7 +61,6 @@
         {
           packages = {
             ydotool = pkgs.callPackage ./packages/ydotool { src = inputs.ydotool-src; };
-            abuild = pkgs.callPackage ./packages/abuild { src = inputs.abuild-src; };
             delta = pkgs.callPackage ./packages/delta { };
           } // pkgs.lib.optionalAttrs (system == x86_64-linux) {
             lc0 = pkgs.callPackage ./packages/lc0 { src = inputs.lc0-src; };
